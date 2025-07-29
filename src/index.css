@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Robotics Portfolio Dark Theme */
+    --background: 217 19% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 217 19% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 217 19% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 195 100% 50%;
+    --primary-foreground: 217 19% 8%;
+
+    --secondary: 217 19% 15%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 19% 12%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 285 85% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 19% 20%;
+    --input: 217 19% 15%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom Portfolio Colors */
+    --electric: 195 100% 50%;
+    --electric-dark: 195 100% 35%;
+    --electric-light: 195 100% 70%;
+    --neon: 285 85% 60%;
+    --neon-dark: 285 85% 45%;
+    --cyber: 170 100% 45%;
+    --tech: 45 100% 55%;
+    
+    /* Gradients */
+    --gradient-electric: linear-gradient(135deg, hsl(195 100% 50%), hsl(285 85% 60%));
+    --gradient-cyber: linear-gradient(135deg, hsl(170 100% 45%), hsl(195 100% 50%));
+    --gradient-tech: linear-gradient(135deg, hsl(285 85% 60%), hsl(45 100% 55%));
+    --gradient-dark: linear-gradient(135deg, hsl(217 19% 8%), hsl(217 19% 12%));
+    
+    /* Shadows & Effects */
+    --shadow-electric: 0 0 30px hsl(195 100% 50% / 0.3);
+    --shadow-neon: 0 0 40px hsl(285 85% 60% / 0.4);
+    --shadow-glow: 0 10px 40px -10px hsl(195 100% 50% / 0.4);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 217 19% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 195 100% 50%;
+    --sidebar-primary-foreground: 217 19% 8%;
+    --sidebar-accent: 217 19% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 19% 20%;
+    --sidebar-ring: 195 100% 50%;
+  }
+
+  .dark {
+    --background: 217 19% 8%;
+    --foreground: 210 40% 98%;
+    --card: 217 19% 10%;
+    --card-foreground: 210 40% 98%;
+    --popover: 217 19% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 217 19% 8%;
+    --secondary: 217 19% 15%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 19% 12%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 285 85% 60%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 19% 20%;
+    --input: 217 19% 15%;
+    --ring: 195 100% 50%;
+    --sidebar-background: 217 19% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 195 100% 50%;
+    --sidebar-primary-foreground: 217 19% 8%;
+    --sidebar-accent: 217 19% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 19% 20%;
+    --sidebar-ring: 195 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Electric Button */
+  .btn-electric {
+    @apply relative bg-gradient-to-r from-[hsl(var(--electric))] to-[hsl(var(--cyber))] text-[hsl(var(--primary-foreground))] px-8 py-3 rounded-lg font-semibold;
+    @apply transform transition-all duration-300 hover:scale-105 hover:shadow-[var(--shadow-electric)];
+    @apply before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-r before:from-[hsl(var(--electric-light))] before:to-[hsl(var(--cyber))] before:opacity-0 before:transition-opacity before:duration-300;
+    @apply hover:before:opacity-20;
+  }
+
+  /* Neon Text */
+  .text-neon {
+    @apply text-[hsl(var(--neon))];
+    text-shadow: 0 0 10px hsl(var(--neon) / 0.5);
+  }
+
+  /* Electric Text */
+  .text-electric {
+    @apply text-[hsl(var(--electric))];
+    text-shadow: 0 0 15px hsl(var(--electric) / 0.4);
+  }
+
+  /* Cyber Text */
+  .text-cyber {
+    @apply text-[hsl(var(--cyber))];
+    text-shadow: 0 0 12px hsl(var(--cyber) / 0.5);
+  }
+
+  /* Glass Card */
+  .glass-card {
+    @apply bg-[hsl(var(--card)_/_0.7)] backdrop-blur-lg border border-[hsl(var(--border))] rounded-xl;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Hover Card */
+  .hover-card {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-[var(--shadow-glow)];
+  }
+
+  /* Glow Effect */
+  .glow {
+    box-shadow: var(--shadow-electric);
+  }
+
+  /* Floating Animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Pulse Glow */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite alternate;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: var(--gradient-electric);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Grid Pattern */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(hsl(var(--border) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+@layer utilities {
+  /* Custom Animations */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulseGlow {
+    0% {
+      box-shadow: 0 0 20px hsl(var(--electric) / 0.3);
+    }
+    100% {
+      box-shadow: 0 0 40px hsl(var(--electric) / 0.6);
+    }
+  }
+
+  @keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out;
+  }
+}
